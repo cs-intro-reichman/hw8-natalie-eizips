@@ -43,16 +43,12 @@
 
     /** If this user follows the given name, returns true; otherwise returns false. */
     public boolean follows(String name) {
-        try{
             String name1 = name.substring(0,1).toUpperCase() + name.substring(1);
-            for (int i = 0; i < this.follows.length; i++){
-                if (this.follows[i] != null && this.follows[i].equals(name1)) {
+            for (int i = 0; i < this.fCount; i++){
+                if (this.follows[i].equals(name1)) {
                     return true;
                 }
             }
-        } catch (NullPointerException e){
-            System.out.println(e.getMessage());
-        }
         return false;
     }
     /** Makes this user follow the given name. If successful, returns true. 
