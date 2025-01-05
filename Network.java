@@ -141,7 +141,7 @@ public class Network {
                 String name = this.users[i].getName();
                 ans += name + " -> "; 
                 String[] follows = this.users[i].getfFollows();
-                for (int j = 0; j < follows.length; j++) {
+                for (int j = 0; j < this.users[i].getfCount(); j++) {
                     if (follows[j] != null){
                         ans += " " + follows[j];
                     }
