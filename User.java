@@ -73,13 +73,9 @@
         if (!this.follows(name)){
             return false;
         }
-        if (name == null){
-            return false;
-        }
-        for (int i = 0; i < this.follows.length; i++){
-
+        for (int i = 0; i < this.fCount; i++){
             if (this.follows[i] != null && this.follows[i].equals(name)){
-                for (int j = i; j < this.follows.length - i; j++){
+                for (int j = i; j < this.fCount - i; j++){
                     this.follows[j] = this.follows[j + i];
                 }
                 this.fCount--;
