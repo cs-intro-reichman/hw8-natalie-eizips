@@ -59,6 +59,9 @@ public class Network {
      *  If any of the two names is not a user in this network,
      *  or if the "follows" addition failed for some reason, returns false. */
     public boolean addFollowee(String name1, String name2) {
+        if (name1 == null || name2 == null){
+            return false;
+        }
         User user1 = getUser(name1);
         User user2 = getUser(name2);
 
@@ -84,7 +87,7 @@ public class Network {
         String max = null;
         int count = 0;
         User user = getUser(name);
-        for (int i = 1; i < this.users.length; i++){
+        for (int i = 1; i < this.userCount; i++){
             if (this.users[i - 1] != null && this.users[i] != null){
                 if (count < user.countMutual(this.users[i])){ // checks maximum mutual count
                     max = this.users[i].getName();
@@ -100,7 +103,7 @@ public class Network {
     public String mostPopularUser() {
         int max = 0;
         String max_user = "";
-        for (int i = 0; i < users.length; i++){
+        for (int i = 0; i < userCount; i++){
             if (this.users[i] != null){
                 String user1 = this.users[i].getName();
                 if (this.followeeCount(user1) > max){
@@ -116,7 +119,7 @@ public class Network {
      *  the users in this network. Note: A name can appear 0 or 1 times in each list. */
     private int followeeCount(String name) {
         int count = 0;
-        for (int i = 0; i < this.users.length; i++){
+        for (int i = 0; i < this.userCount; i++){
             if (this.users[i] != null){
                 if (this.users[i].follows(name)){
                     count++;
@@ -130,7 +133,7 @@ public class Network {
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
         String ans = "";
-        for (int i = 0; i < users.length; i++) {
+        for (int i = 0; i < userCount; i++) {
             if (this.users[i] != null) { 
                 String name = this.users[i].getName();
                 ans += name + " -> "; 
