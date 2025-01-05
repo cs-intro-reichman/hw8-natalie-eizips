@@ -58,12 +58,11 @@
     /** Makes this user follow the given name. If successful, returns true. 
      *  If this user already follows the given name, or if the follows list is full, does nothing and returns false; */
     public boolean addFollowee(String name) {
-        String name1 = name.substring(0,1).toUpperCase() + name.substring(1);
         for (int i = 0; i < this.follows.length; i++){
-            if (this.follows[i] != null && this.follows[i].equals(name1)){
+            if (this.follows[i] != null && this.follows[i].equals(name)){
                 return false;
             }
-            if (this.getName().equals(name1)){
+            if (this.getName().equals(name)){
                 return false;
             }
             if (this.follows[i] == null){
