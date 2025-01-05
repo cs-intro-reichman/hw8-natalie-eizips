@@ -143,7 +143,7 @@ public class Network {
                 String[] follows = this.users[i].getfFollows();
                 for (int j = 0; j < this.users[i].getfCount(); j++) {
                     if (follows[j] != null){
-                        ans += " " + follows[j];
+                        ans += follows[j];
                     }
                     else {
                         break;
