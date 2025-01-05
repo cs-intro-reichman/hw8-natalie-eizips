@@ -89,7 +89,6 @@
                 return true;
             }
         }
-        this.follows[fCount] = null;
         return false;
     }
 
