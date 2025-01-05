@@ -61,6 +61,9 @@
             if (this.follows[i] != null && this.follows[i].equals(name)){
                 return false;
             }
+            if (this.getName().equals(name)){
+                return false;
+            }
             if (this.follows[i] == null){
                 this.follows[i] = name;
                 this.fCount++; 
