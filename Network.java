@@ -71,6 +71,10 @@ public class Network {
         User user1 = getUser(name1);
         User user2 = getUser(name2);
 
+        if (name1.equals(name2)){
+            return false;
+        }
+
         if (getUser(name1) == null || getUser(name2) == null){
             return false;
         }
