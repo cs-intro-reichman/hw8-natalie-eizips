@@ -29,12 +29,9 @@ public class Network {
      *  If there is no such user, returns null.
      *  Notice that the method receives a String, and returns a User object. */
     public User getUser(String name) {
-        for (int i = 0; i < this.users.length; i++){
-            if (this.users[i] != null){ // if there is a slot with a user, check if it is the user we want
-                String user_name = this.users[i].getName();
-                if (user_name.equals(name)){
-                    return this.users[i];
-                }
+        for (int i = 0; i < this.userCount; i++){
+            if (this.users[i].getName().toLowerCase().equals(name.toLowerCase())) {
+                return this.users[i];
             }
         }
         return null;
@@ -48,12 +45,6 @@ public class Network {
         for (int i = 0; i < this.users.length; i++){
             if (this.userCount == this.users.length) { // checks if there is any room left in the network
                 return false;
-            }
-            if (this.users[i] != null){ //checks if there is already a user with that name
-                String user_name = this.users[i].getName();
-                if (user_name.equals(name)){
-                    return false;
-                }
             }
             if (this.users[i] == null) { // if there is an empty slot, add the user
                 this.users[i] = new User(name);
