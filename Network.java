@@ -29,11 +29,11 @@ public class Network {
      *  If there is no such user, returns null.
      *  Notice that the method receives a String, and returns a User object. */
     public User getUser(String name) {
-        for (int i = 0; i < users.length; i++){
-            if (users[i] != null){ // if there is a slot with a user, check if it is the user we want
-                String user_name = users[i].getName();
+        for (int i = 0; i < this.users.length; i++){
+            if (this.users[i] != null){ // if there is a slot with a user, check if it is the user we want
+                String user_name = this.users[i].getName();
                 if (user_name.equals(name)){
-                    return users[i];
+                    return this.users[i];
                 }
             }
         }
@@ -45,19 +45,19 @@ public class Network {
     *  If the given name is already a user in this network, does nothing and returns false;
     *  Otherwise, creates a new user with the given name, adds the user to this network, and returns true. */
     public boolean addUser(String name) {
-        for (int i = 0; i < users.length; i++){
-            if (userCount == users.length) { // checks if there is any room left in the network
+        for (int i = 0; i < this.users.length; i++){
+            if (this.userCount == this.users.length) { // checks if there is any room left in the network
                 return false;
             }
-            if (users[i] != null){ //checks if there is already a user with that name
-                String user_name = users[i].getName();
+            if (this.users[i] != null){ //checks if there is already a user with that name
+                String user_name = this.users[i].getName();
                 if (user_name.equals(name)){
                     return false;
                 }
             }
-            if (users[i] == null) { // if there is an empty slot, add the user
-                users[i] = new User(name);
-                userCount++;
+            if (this.users[i] == null) { // if there is an empty slot, add the user
+                this.users[i] = new User(name);
+                this.userCount++;
                 return true;
             }
         }
@@ -86,14 +86,14 @@ public class Network {
     /** For the user with the given name, recommends another user to follow. The recommended user is
      *  the user that has the maximal mutual number of followees as the user with the given name. */
     public String recommendWhoToFollow(String name) {
-        String max = "";
+        String max = null;
         int count = 0;
         User user = getUser(name);
-        for (int i = 1; i < users.length; i++){
-            if (users[i - 1] != null && users[i] != null){
-                if (count < user.countMutual(users[i])){ // checks maximum mutual count
-                    max = users[i].getName();
-                    count = user.countMutual(users[i]);
+        for (int i = 1; i < this.users.length; i++){
+            if (this.users[i - 1] != null && this.users[i] != null){
+                if (count < user.countMutual(this.users[i])){ // checks maximum mutual count
+                    max = this.users[i].getName();
+                    count = user.countMutual(this.users[i]);
                 }
             }
         }
@@ -106,10 +106,10 @@ public class Network {
         int max = 0;
         String max_user = "";
         for (int i = 0; i < users.length; i++){
-            if (users[i] != null){
-                String user1 = users[i].getName();
-                if (followeeCount(user1) > max){
-                    max = followeeCount(user1);
+            if (this.users[i] != null){
+                String user1 = this.users[i].getName();
+                if (this.followeeCount(user1) > max){
+                    max = this.followeeCount(user1);
                     max_user = user1;
                 }
             }
@@ -121,9 +121,9 @@ public class Network {
      *  the users in this network. Note: A name can appear 0 or 1 times in each list. */
     private int followeeCount(String name) {
         int count = 0;
-        for (int i = 0; i < users.length; i++){
-            if (users[i] != null){
-                if (users[i].follows(name)){
+        for (int i = 0; i < this.users.length; i++){
+            if (this.users[i] != null){
+                if (this.users[i].follows(name)){
                     count++;
                     continue;
                 }
@@ -136,10 +136,10 @@ public class Network {
     public String toString() {
         String ans = "";
         for (int i = 0; i < users.length; i++) {
-            if (users[i] != null) { 
-                String name = users[i].getName();
+            if (this.users[i] != null) { 
+                String name = this.users[i].getName();
                 ans += name + " -> "; 
-                String[] follows = users[i].getfFollows();
+                String[] follows = this.users[i].getfFollows();
                 for (int j = 0; j < follows.length; j++) {
                     if (follows[j] != null){
                         ans += " " + follows[j];
